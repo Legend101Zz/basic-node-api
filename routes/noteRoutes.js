@@ -1,7 +1,19 @@
 const express = require("express");
-const { getNotes, createNote, deleteNote, updateNote } = require("../controllers/noteController");
+const {
+  getNotes,
+  createNote,
+  deleteNote,
+  updateNote,
+} = require("../controllers/noteController");
 const auth = require("../middlewares/auth");
 const noteRouter = express.Router();
+const bodyParser = require("body-parser");
+
+noteRouter.use(
+  bodyParser.urlencoded({
+    extended: true,
+  })
+);
 
 noteRouter.get("/", auth, getNotes);
 
